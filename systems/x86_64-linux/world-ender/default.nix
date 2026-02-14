@@ -5,11 +5,11 @@
 { config, pkgs, ... }:
 
 {
-  # imports =
-  #   [
-  #     # Include the results of the hardware scan.
-  #     ./hardware-configuration.nix
-  #   ];
+   imports =
+     [
+       # Include the results of the hardware scan.
+       ./hardware-configuration.nix
+     ];
 
   rooting = {
     display = {
@@ -28,6 +28,22 @@
       };
     };
   };
+  boot.loader.systemd-boot.enable = true;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.loader.efi.canTouchEfiVariables = true;
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "de_DE.UTF-8";
+    LC_IDENTIFICATION = "de_DE.UTF-8";
+    LC_MEASUREMENT = "de_DE.UTF-8";
+    LC_MONETARY = "de_DE.UTF-8";
+    LC_NAME = "de_DE.UTF-8";
+    LC_NUMERIC = "de_DE.UTF-8";
+    LC_PAPER = "de_DE.UTF-8";
+    LC_TELEPHONE = "de_DE.UTF-8";
+    LC_TIME = "de_DE.UTF-8";
+};
+    
 
   # boerg = {
   #   packages = {
@@ -119,6 +135,13 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };	
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -137,7 +160,10 @@
     protonvpn-gui
     ckan
     teamspeak6-client
-    cinny-desktop
+    vim
+    vesktop
+    vscode
+    brave
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

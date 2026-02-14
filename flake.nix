@@ -14,7 +14,7 @@
         inputs.snowfall-lib.mkFlake {
             inherit inputs;
             src = ./.;
-
+	    channels-config.allowUnfree = true;
             # Configure Snowfall Lib, all of these settings are optional.
             snowfall = {
                 # Tell Snowfall Lib to look in the `./nix/` directory for your

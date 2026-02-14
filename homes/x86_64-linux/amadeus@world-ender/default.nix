@@ -1,0 +1,4 @@
+{...}:
+{
+    rooting.zsh.enable = true;
+}

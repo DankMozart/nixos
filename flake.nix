@@ -8,13 +8,17 @@
         };
         # TODO Had to add home-manager
         home-manager.url = "github:nix-community/home-manager";
+        home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     outputs = inputs:
         inputs.snowfall-lib.mkFlake {
             inherit inputs;
             src = ./.;
-	    channels-config.allowUnfree = true;
+	        channels-config.allowUnfree = true;
+            home-manager.users.amadeus = {
+                home.stateVersion = "25.11";
+            };
             # Configure Snowfall Lib, all of these settings are optional.
             snowfall = {
                 # Tell Snowfall Lib to look in the `./nix/` directory for your

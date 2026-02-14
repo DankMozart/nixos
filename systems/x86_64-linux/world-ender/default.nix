@@ -43,7 +43,6 @@
     LC_TELEPHONE = "de_DE.UTF-8";
     LC_TIME = "de_DE.UTF-8";
 };
-    
 
   # boerg = {
   #   packages = {
@@ -164,6 +163,9 @@
     vesktop
     vscode
     brave
+    nixfmt
+    uv
+    btop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
